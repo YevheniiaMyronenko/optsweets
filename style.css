@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --white: #fff;
@@ -10,7 +12,9 @@
   --line: #f1d9e1;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -19,6 +23,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header {
   height: 86px;
   padding: 0 6vw;
@@ -26,7 +34,7 @@ body {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
-  background: rgba(255,255,255,.96);
+  background: rgba(255, 255, 255, 0.96);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -35,7 +43,7 @@ body {
 .brand {
   font-size: 24px;
   font-weight: 700;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
   color: var(--raspberry);
 }
 
@@ -45,19 +53,31 @@ body {
   font-size: 14px;
 }
 
+/* =========================
+   CATALOG
+========================= */
+
 .catalog {
   width: min(1180px, 88vw);
   margin: 40px auto 70px;
 }
 
+/* =========================
+   PRODUCT
+========================= */
+
 .product {
   display: grid;
-  grid-template-columns: 300px 1fr 150px;
+  grid-template-columns: 300px 1fr auto;
   gap: 46px;
   align-items: center;
   padding: 34px 0;
   border-bottom: 1px solid var(--line);
 }
+
+/* =========================
+   GALLERY
+========================= */
 
 .gallery {
   width: 300px;
@@ -72,7 +92,7 @@ body {
 .gallery-track {
   display: flex;
   height: 100%;
-  transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .slide {
@@ -87,6 +107,10 @@ body {
   object-fit: cover;
 }
 
+/* =========================
+   ARROWS
+========================= */
+
 .arrow {
   position: absolute;
   top: 50%;
@@ -95,16 +119,25 @@ body {
   height: 36px;
   border: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,.88);
+  background: rgba(255, 255, 255, 0.88);
   color: var(--raspberry);
   font-size: 27px;
   line-height: 30px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(91,34,55,.10);
+  box-shadow: 0 6px 18px rgba(91, 34, 55, 0.1);
 }
 
-.arrow.prev { left: 12px; }
-.arrow.next { right: 12px; }
+.arrow.prev {
+  left: 12px;
+}
+
+.arrow.next {
+  right: 12px;
+}
+
+/* =========================
+   DOTS
+========================= */
 
 .dots {
   position: absolute;
@@ -121,17 +154,23 @@ body {
   border-radius: 50%;
   border: 0;
   padding: 0;
-  background: rgba(255,255,255,.65);
+  background: rgba(255, 255, 255, 0.65);
   cursor: pointer;
 }
 
-.dot.active { background: var(--raspberry); }
+.dot.active {
+  background: var(--raspberry);
+}
+
+/* =========================
+   PRODUCT INFO
+========================= */
 
 .product-info h2 {
   margin: 0 0 13px;
   font-size: 22px;
   font-weight: 700;
-  letter-spacing: -.01em;
+  letter-spacing: -0.01em;
 }
 
 .product-info p {
@@ -142,8 +181,21 @@ body {
   line-height: 1.65;
 }
 
-.price {
+/* =========================
+   PRICES
+========================= */
+
+/* Контейнер для кількох цін */
+.prices {
   justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+/* Одна ціна */
+.price {
   min-width: 140px;
   padding: 17px 16px;
   border: 1px solid var(--raspberry);
@@ -153,7 +205,17 @@ body {
   font-size: 15px;
   font-weight: 700;
   background: var(--pink-light);
+  white-space: nowrap;
 }
+
+/* Якщо ціна одна і вона НЕ всередині .prices */
+.product > .price {
+  justify-self: end;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   padding: 30px 20px 38px;
@@ -162,37 +224,86 @@ footer {
   font-size: 13px;
 }
 
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 850px) {
+
   .product {
     grid-template-columns: 220px 1fr;
     gap: 28px;
   }
-  .gallery { width: 220px; }
-  .price {
+
+  .gallery {
+    width: 220px;
+  }
+
+  .prices {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .product > .price {
     grid-column: 2;
     justify-self: start;
   }
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
-  .header { height: 72px; padding: 0 6vw; }
-  .brand { font-size: 20px; }
-  .catalog { width: 88vw; margin-top: 20px; }
+
+  .header {
+    height: 72px;
+    padding: 0 6vw;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .catalog {
+    width: 88vw;
+    margin-top: 20px;
+  }
+
   .product {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 28px 0;
   }
+
   .gallery {
     width: 100%;
     max-width: 360px;
     justify-self: center;
   }
-  .product-info h2 { font-size: 20px; }
-  .product-info p { font-size: 15px; }
-  .price {
+
+  .product-info h2 {
+    font-size: 20px;
+  }
+
+  .product-info p {
+    font-size: 15px;
+  }
+
+  .prices {
     grid-column: auto;
     justify-self: start;
+    align-items: flex-start;
+  }
+
+  .product > .price {
+    grid-column: auto;
+    justify-self: start;
+  }
+
+  .price {
     min-width: 130px;
+    font-size: 14px;
+    padding: 14px 15px;
   }
 }
